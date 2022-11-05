@@ -1,0 +1,29 @@
+@baseUrl = http://localhost:3000/auths
+
+### Read all users
+GET {{baseUrl}}/auths
+
+###
+# @name admin
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "userName":"admin",
+    "password":"admin"
+}
+###
+@adminToken={{admin.request.body.token}}
+
+###
+POST {{baseUrl}}/register
+Content-Type: application/json
+
+{
+    "userName":"manager",
+    "password":"manager"
+}
+
+###
+GET {{baseUrl}}
+

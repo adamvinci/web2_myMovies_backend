@@ -1,0 +1,61 @@
+######### NORMAL OPERATION  ###########
+
+### Read all film
+GET http://localhost:3000/film
+
+### Read all pizzas with File variable
+@baseUrl = http://localhost:3000
+GET {{baseUrl}}/film
+
+### Read all pizzas sorted by title (ascending)
+GET {{baseUrl}}/film/?order=+duration
+
+### Read all pizzas sorted by title (descending)
+GET {{baseUrl}}/film/?order=-duration
+
+###
+GET {{baseUrl}}/film/?search=A
+
+###
+GET {{baseUrl}}/film/?search=X
+### Read pizza identified by 2
+GET {{baseUrl}}/film/1
+
+###
+# @name manager
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "userName":"manager",
+    "password":"manager"
+}
+###
+@managerToken={{manager.request.body.token}}
+### Create a pizza
+POST {{baseUrl}}/film
+Content-Type: application/json
+Authorization: {{managerToken}}
+
+{
+    "title":"7",
+    "duration":"5h30",
+    "budget":"800M",
+    "link":"https://avengers5"
+
+}
+
+### Delete pizza identified by 2
+DELETE {{baseUrl}}/film/7
+
+### Update the pizza identified by 6
+PATCH {{baseUrl}}/film/6
+Content-Type: application/json
+
+{
+    "duration":"46565464564"
+}
+
+
+
+
